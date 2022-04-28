@@ -9,15 +9,15 @@ jobs:
       - name: Prepare variables
         id: vars
         shell: bash
-        run: |
+        run: >
           echo "##[set-output name=branch;]$(echo
           ${GITHUB_REF#refs/heads/})"
           echo "::set-output name=sha_short::$(git rev-parse HEAD)"
       - name: Prepare Mixeway docker image
-        run: |
+        run: >
           docker pull mixeway/scanner:latest
       - name: Run Scan
-        run: |
+        run: >
           docker run 
           -e OSS_USERNAME=${{ secrets.OSS_USERNAME }}
           -e OSS_KEY=${{ secrets.OSS_KEY }}
